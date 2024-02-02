@@ -5,25 +5,42 @@
 
 // 나의 풀이
 // NOTE: 프로그래머스에서 테스트케이스가 반타작이다. 다시 고쳐야해
+// function solution(babbling) {
+//   const word = ['aya', 'ye', 'woo', 'ma'];
+
+//   let answer = 0;
+//   babbling.map((str) => {
+//     for (const w of word) {
+//       if (str.includes(w)) {
+//         str = str.replace(w, '*');
+//       }
+//     }
+
+//     if (str.startsWith('*') && str.endsWith('*')) {
+//       console.log(str);
+//       answer++;
+//     }
+//   });
+
+//   return answer;
+// }
+
+// 남들 풀이
 function solution(babbling) {
   const word = ['aya', 'ye', 'woo', 'ma'];
 
-  let answer = 0;
-  babbling.map((str) => {
-    for (const w of word) {
-      if (str.includes(w)) {
-        str = str.replace(w, '*');
+  return babbling
+    .map((str) => {
+      for (const w of word) {
+        if (str.includes(w)) {
+          str = str.replace(w, ' ');
+        }
       }
-    }
-
-    if (str.startsWith('*') && str.endsWith('*')) {
-      console.log(str);
-      answer++;
-    }
-  });
-
-  return answer;
+      return str;
+    })
+    // NOTE: .trim메서드 앞에 !느낌표 붙이면, 공백만 있는 경우 true가 된다,,,, 그래서 공백만 있는 애의 길이를 반환하니까,, 답이 된다,,
+    .filter((str) => !str.trim()).length;
 }
 
 console.log(solution(['aya', 'yee', 'u', 'maa', 'wyeoo']));
-console.log(solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"]));
+console.log(solution(['ayaye', 'uuuma', 'ye', 'yemawoo', 'ayaa']));
